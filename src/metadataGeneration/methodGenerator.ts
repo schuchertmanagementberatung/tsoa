@@ -40,7 +40,9 @@ export class MethodGenerator {
     }
     const type = new TypeResolver(nodeType, this.current).resolve();
     const responses = this.getMethodResponses();
-    responses.push(this.getMethodSuccessResponse(type));
+    if (!responses.some(({ name }) => name === '200')) {
+      responses.push(this.getMethodSuccessResponse(type));
+    };
 
     return {
       deprecated: isExistJSDocTag(this.node, (tag) => tag.tagName.text === 'deprecated'),
