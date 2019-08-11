@@ -243,12 +243,13 @@ export namespace Swagger {
 
   export interface Schema3 extends Schema {
     nullable?: boolean;
+    oneOf?: BaseSchema[];
+    allOf?: BaseSchema[];
   }
 
   export interface Schema extends BaseSchema {
     type: DataType;
     format?: DataFormat;
-    allOf?: Schema[];
     additionalProperties?: boolean | BaseSchema;
     properties?: { [propertyName: string]: Schema };
     discriminator?: string;
