@@ -24,7 +24,7 @@ describe('Definition generation', () => {
 
   describe('Interface-based generation', () => {
     it('should generate a definition for referenced models', () => {
-      const expectedModels = ['TestModel', 'TestSubModel', 'Result', 'TestSubModelContainer', 'TestSubModelContainerNamespace.InnerNamespace.TestSubModelContainer2', 'TestSubModel2', 'TestSubModelNamespace.TestSubModelNS'];
+      const expectedModels = ['TestModel', 'TestSubModel', 'Result', 'TestSubModelContainer', 'TestSubModelContainerNamespace.InnerNamespace.TestSubModelContainer2', 'TestSubModel2', 'TestSubModelNamespace.TestSubModelNS', 'UnionTestModel'];
       expectedModels.forEach((modelName) => {
         getValidatedDefinition(modelName);
       });
@@ -37,6 +37,22 @@ describe('Definition generation', () => {
 
       expect(definition.properties.value.type).to.equal('string');
       expect(definition.properties.value.enum).to.deep.equal(['success', 'failure']);
+    });
+
+    it('should generate an member of type object for union type', () => {
+      const definition = getValidatedDefinition('UnionTestModel');
+      if (!definition.properties) { throw new Error('Definition has no properties.'); }
+      if (!definition.properties.or) { throw new Error('There was no \'or\' property.'); }
+
+      expect(definition.properties.or.type).to.equal('object');
+    });
+
+    it('should generate an member of type object for intersection type', () => {
+      const definition = getValidatedDefinition('UnionTestModel');
+      if (!definition.properties) { throw new Error('Definition has no properties.'); }
+      if (!definition.properties.and) { throw new Error('There was no \'and\' property.'); }
+
+      expect(definition.properties.and.type).to.equal('object');
     });
 
     it('should generate a member of type object for object type', () => {

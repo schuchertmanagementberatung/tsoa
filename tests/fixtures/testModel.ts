@@ -66,6 +66,12 @@ export interface TestModel extends Model {
   TypeAliasCase2?: TypeAliasModelCase2;
 }
 
+export interface UnionTestModel {
+  or: TypeAliasModel1 | TypeAliasModel2;
+  and: TypeAliasModel1 & TypeAliasModel2;
+  referenceAnd: TypeAliasModelCase1;
+}
+
 export interface TypeAliasModel1 {
   value1: string;
 }

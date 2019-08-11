@@ -69,7 +69,7 @@ export namespace Tsoa {
   }
 
   export interface Type {
-    dataType: 'string' | 'double' | 'float' | 'integer' | 'long' | 'enum' | 'array' | 'datetime' | 'date' | 'buffer' | 'void' | 'object' | 'any' | 'refEnum' | 'refObject';
+    dataType: 'string' | 'double' | 'float' | 'integer' | 'long' | 'enum' | 'array' | 'datetime' | 'date' | 'buffer' | 'void' | 'object' | 'any' | 'refEnum' | 'refObject' | 'union' | 'intersection';
   }
 
   export interface EnumerateType extends Type {
@@ -90,6 +90,16 @@ export namespace Tsoa {
     additionalProperties?: Type;
     enums?: string[];
     example?: any;
+  }
+
+  export interface UnionType extends Type {
+    dataType: 'union';
+    types: Type[];
+  }
+
+  export interface IntersectionType extends Type {
+    dataType: 'intersection';
+    types: Type[];
   }
 
   export interface ReferenceTypeMap {
