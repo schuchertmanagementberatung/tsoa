@@ -16,11 +16,6 @@
     "hapi.js",
     "koa"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && npm run pre-commit"
-    }
-  },
   "lint-staged": {
     "*.{js,ts}": [
       "prettier --write",
@@ -35,7 +30,6 @@
     "clean": "rimraf dist && rimraf tests/fixtures/*/routes.ts",
     "lint": "tslint ./src/**/*.ts ./tests/**/*.ts",
     "format": "tsfmt -r",
-    "prepare": "yarn build",
     "deploy": "yarn version patch -m \"Release v%s\" && yarn publish",
     "preversion": "yarn test",
     "postversion": "git push origin master && git push --follow-tags",
