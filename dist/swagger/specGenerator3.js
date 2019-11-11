@@ -315,9 +315,9 @@ var SpecGenerator3 = /** @class */ (function (_super) {
                     swaggerType[key] = property.validators[key].value;
                 });
             }
-            if (!property.required) {
-                swaggerType.nullable = true;
-            }
+            // if (!property.required) {
+            //   swaggerType.nullable = true;
+            // }
             properties[property.name] = swaggerType;
         });
         return properties;
