@@ -16,11 +16,6 @@
     "hapi.js",
     "koa"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && npm run pre-commit"
-    }
-  },
   "lint-staged": {
     "*.{js,ts}": [
       "prettier --write",
