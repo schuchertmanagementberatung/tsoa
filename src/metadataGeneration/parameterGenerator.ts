@@ -10,7 +10,7 @@ import { TypeResolver } from './typeResolver';
 export class ParameterGenerator {
   constructor(private readonly parameter: ts.ParameterDeclaration, private readonly method: string, private readonly path: string, private readonly current: MetadataGenerator) {}
 
-  public Generate(): Tsoa.Parameter {
+  public Generate(): Tsoa.Parameter | null {
     const decoratorName = getDecoratorName(this.parameter, identifier => this.supportParameterDecorator(identifier.text));
 
     switch (decoratorName) {
@@ -27,7 +27,7 @@ export class ParameterGenerator {
       case 'Path':
         return this.getPathParameter(this.parameter);
       default:
-        return this.getPathParameter(this.parameter);
+        return null;
     }
   }
 
