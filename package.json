@@ -30,7 +30,7 @@
     "clean": "rimraf dist && rimraf tests/fixtures/*/routes.ts",
     "lint": "tslint ./src/**/*.ts ./tests/**/*.ts",
     "format": "tsfmt -r",
-    "prepare": "yarn build",
+    "prepublish": "yarn build",
     "deploy": "yarn version patch -m \"Release v%s\" && yarn publish",
     "preversion": "yarn test",
     "postversion": "git push origin master && git push --follow-tags",
